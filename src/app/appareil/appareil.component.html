@@ -1,6 +1,6 @@
 <li class="list-group-item">
     <div style="background-color:red; width:20px; height:20px;"
     *ngIf="appareilStatus==='éteint'"></div>
-    <h4>Appareil:{{ appareilName }} -- Status: {{ getStatus() }}</h4>
+    <h4 [ngStyle]="{color:getColor()}">Appareil:{{ appareilName }} -- Status: {{ getStatus() }}</h4>
     <input type="text" class="form-control" placeholder="" name="" id="" [(ngModel)]="appareilName">
 </li>
