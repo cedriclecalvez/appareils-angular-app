@@ -306,10 +306,14 @@
   <div class="row">
     <div class="col-xs-12">
       <h2>Mes appareils</h2>
+        <!-- utilisation de pipe, attention a l'ordre des pipes -->
       <p>Mise à jour : {{ lastUpdate | async | date :"short" | uppercase}}</p>
       <ul class="list-group">
+        <!-- ngFor est une directive pour iterer, let i permet de prendre chacun des elements du tableau  -->
+        <!-- [] permet de faire du property binding liaison par propriétés -->
         <app-appareil
-          *ngFor="let appareil of appareils"
+          *ngFor="let appareil of appareils; let i=index" 
+          [indexOfAppareil]="i"
           [appareilName]="appareil.name"
           [appareilStatus]="appareil.status"
         ></app-appareil>
@@ -319,7 +323,14 @@
         [disabled]="!isAuth"
         (click)="onAllumer()"
       >
-        Tout allumé
+        Tout allumer
+      </button>
+      <button
+        class="btn btn-danger"
+        [disabled]="!isAuth"
+        (click)="onEteindre()"
+      >
+        Tout éteindre
       </button>
     </div>
   </div>
