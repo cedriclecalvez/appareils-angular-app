@@ -23,12 +23,12 @@
   <!-- <input type="text"class="form-control"placeholder=""name=""id=""[(ngModel)]="appareilName"/> -->
 
   <!-- ici la methode du composant appelle la methode du service-->  
-  <button class="btn-btn-success" 
+  <button class="btn btn-success" 
           (click)="onSwitchOn()"
           [disabled]="appareilStatus==='allumé'"            
     >Allumer
   </button>
-  <button class="btn-btn-success" 
+  <button class="btn btn-danger" 
           (click)="onSwitchOff()"
           [disabled]="appareilStatus==='éteint'"  
   >Eteindre</button>
