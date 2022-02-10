@@ -63,4 +63,22 @@ export class AppareilService {
     this.appareils[index].status = 'éteint';
     this.emitAppareilSubject();
   }
+
+  addAppareil(name: string, status: string){
+    const appareilObject = {
+      id:0,
+      name:"",
+      status:""
+    }
+    
+    // je créé le nouvel appareil avec la data du form passée en parametre
+    appareilObject.name= name;
+    appareilObject.status=status;
+    appareilObject.id=this.appareils[this.appareils.length - 1].id+1;
+
+    this.appareils.push(appareilObject);
+    // je renvoie le nouveau tableau avec le new appareil dedans
+    this.emitAppareilSubject()
+    
+  }
 }
