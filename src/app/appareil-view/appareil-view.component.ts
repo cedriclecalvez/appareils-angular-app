@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppareilService } from '../services/appareil.service';
 
 @Component({
@@ -22,7 +23,9 @@ export class AppareilViewComponent implements OnInit {
   });
 
   // initialize data array
-  appareils: any = [];
+  appareils!: any[];
+  // pour authoriser la subscription
+  appareilSubscription!: Subscription;
   
   // declaration variable appareilService venant de AppareilService
   constructor(private appareilService: AppareilService) {
@@ -30,8 +33,16 @@ export class AppareilViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appareils = this.appareilService.appareils;
+    // introduction de la data dans le tableau vide appareils
+    this.appareilSubscription = this.appareilService.appareilSubject.subscribe(
+      //la fonction "next" qui introduit
+      (appareils:any[])=>{
+        this.appareils=appareils}
+    )
+    // on appelle la methode située dans appareilService
+    this.appareilService.emitAppareilSubject()
   }
+
   onAllumer() {
     console.log('on allume tout');
     this.appareilService.switchOnAll()
