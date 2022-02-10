@@ -8,20 +8,21 @@
                     Nom de l'appareil
                 </label>
                 <!-- ngModel permet d'enregister ce control aupres d'angular -->
-                <input type="text" id="name" class="form-control" placeholder="Nom de l'appareil" name="name" ngModel>
+                <input type="text" id="name" class="form-control" placeholder="Nom de l'appareil" name="name" ngModel required>
             </div>
 
             <div class="form-group">
                 <label for="status" >
                     Etat de l'appareil
                 </label>
-                <select id="status" class="form-control" name="status" ngModel>
+                <!-- on a créé defaultOnOff à éteint et lie ngModel à cet état par défault et on est certain de pas avoir un champs vide -->
+                <select id="status" class="form-control" name="status" [ngModel]="defaultOnOff">
                     <option value="allumé">Allumé</option>
                     <option value="éteint">Eteint</option>
                 </select>
             </div>
             
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
         </form>
     </div>    
 </div>

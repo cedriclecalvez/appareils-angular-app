@@ -8,6 +8,8 @@ import { NgForm } from '@angular/forms';
 })
 export class EditAppareilComponent implements OnInit {
 
+  defaultOnOff: string = 'éteint'
+
   constructor() { }
 
   ngOnInit(): void {
