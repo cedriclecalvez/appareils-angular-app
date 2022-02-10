@@ -12,12 +12,14 @@ import { AppareilService } from './services/appareil.service';
 import { AuthService } from './services/auth.service';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import { AuthGardService } from './services/auth-gard.service';
 
 const appRoutes:Routes = [
   { path: '', component: AppareilViewComponent},
   { path: 'auth', component: AuthComponent},
-  { path: 'appareils', component: AppareilViewComponent},
-  { path: 'appareils/:id', component: SingleAppareilComponent},
+  // can activate permet de limiter l'acces au appareil grace au service auth-gard
+  { path: 'appareils', canActivate:[AuthGardService], component: AppareilViewComponent},
+  { path: 'appareils/:id', canActivate:[AuthGardService], component: SingleAppareilComponent},
   { path: 'not-found', component: FourOhFourComponent},
   // ** doit etre a la fin
   { path: '**', redirectTo: '/not-found'},
@@ -43,6 +45,7 @@ const appRoutes:Routes = [
   providers: [
     AppareilService,
     AuthService,
+    AuthGardService
   ],
   bootstrap: [AppComponent]
 })
