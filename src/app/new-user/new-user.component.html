@@ -1,0 +1,30 @@
+<div class="col-sm-8 col-sm-offset-2">
+    <!-- on écoute avec le lien userForm et on met en place l'évenement onSubmitForm -->
+    <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+        <div class="form-group">
+            <label for="firstName">Prénom</label>
+            <!-- utiliser la directive formControlName avec le nom donner dans le ts -->
+            <input type="text" class="form-control" id="firstName" placeholder="Prénom" formControlName="firstName"> 
+        </div>
+        <div class="form-group">
+            <label for="lastName">Nom</label>
+            <!-- utiliser la directive formControlName avec le nom donner dans le ts -->
+            <input type="text" class="form-control" id="lastName" placeholder="Nom" formControlName="lastName"> 
+        </div>
+        <div class="form-group">
+            <label for="lastName">Email</label>
+            <!-- utiliser la directive formControlName avec le nom donner dans le ts -->
+            <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email"> 
+        </div>
+        <div class="form-group">
+            <label for="drinkPreference">Quelle boisson préférez-vous?</label>
+            <!-- utiliser la directive formControlName avec le nom donner dans le ts -->
+            <select class="form-control" id="drinkPreference" formControlName="drinkPreference"> 
+                <option value="Coca-cola">Coca-cola</option>
+                <option value="Pepsi">Pepsi</option>
+            </select>
+        </div>
+        <!-- disabled permet de verifier les control et validators et desactive le bouton dans le cas de mauvais champs -->
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Soumettre</button>
+    </form>
+</div>
